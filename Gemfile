@@ -5,3 +5,5 @@ gemspec
 
 gem 'rspec'
 gem 'yard'
+gem 'pry'
+gem 'pry-doc'
