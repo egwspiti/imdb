@@ -11,6 +11,11 @@ module Imdb
         expect(subject.get(id: id)).to be_instance_of(Movie)
       end
 
+      it 'prepends \'tt\' to id if needed' do
+        expect(MovieEndpoint).to receive(:new).with(id).and_call_original
+        subject.get(id: 2415458)
+      end
+
       context 'fetched movie' do
         before(:each) { expect(MovieEndpoint).to receive(:new).and_return(endpoint) }
         let(:movie) { subject.get(id: id) }
