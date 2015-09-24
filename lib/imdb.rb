@@ -1,5 +1,17 @@
 require "imdb/version"
+require 'imdb/movie_endpoint'
 
+# Imdb module handles interaction with imdb
+#
+# Imdb movies are represented by instances of Imdb::Movie class.
+# Imdb web pages are parsed with the help of Imdb::MovieEndpoint class.
 module Imdb
-  # Your code goes here...
+  # Get a Movie object representing the imdb movie for the given id
+  #
+  # @param [String] id unique imdb ttid
+  # @return [Movie] Movie object representing the imdb movie for the given id
+  def self.get(id: id)
+    endpoint = MovieEndpoint.new(id)
+    endpoint.movie
+  end
 end
