@@ -48,6 +48,16 @@ module Imdb
           expect(movie.genres).to eq [:documentary, :biography]
         end
       end
+
+      context 'tt2236358' do
+        before(:each) { expect(MovieEndpoint).to receive(:new).and_return(endpoint) }
+        let(:id) { 'tt2236358' }
+        let(:movie) { subject.get(id: id) }
+
+        it 'parses not released yet date as nil' do
+          expect(movie.release_date).to be_nil
+        end
+      end
     end
   end
 end

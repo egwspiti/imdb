@@ -58,8 +58,11 @@ module Imdb
     #
     # @return [Date] release date
     def release_date
-      date_str = doc.xpath('//meta[@itemprop="datePublished"]/@content[1]').first.value
-      Date.strptime(date_str,"%Y-%m-%d")
+      date_node = doc.xpath('//meta[@itemprop="datePublished"]/@content[1]').first
+      if date_node
+        date_str = date_node.value
+        Date.strptime(date_str,"%Y-%m-%d")
+      end
     end
 
     # Parse genres of movie from doc
