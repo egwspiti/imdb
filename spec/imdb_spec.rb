@@ -58,6 +58,16 @@ module Imdb
           expect(movie.release_date).to be_nil
         end
       end
+
+      context 'tt2235876' do
+        before(:each) { expect(MovieEndpoint).to receive(:new).and_return(endpoint) }
+        let(:id) { 'tt2235876' }
+        let(:movie) { subject.get(id: id) }
+
+        it 'parses year only release dates as Jan 1 of that year' do
+          expect(movie.release_date).to eq Date.parse('1 Jan 2014')
+        end
+      end
     end
   end
 end

@@ -61,7 +61,7 @@ module Imdb
       date_node = doc.xpath('//meta[@itemprop="datePublished"]/@content[1]').first
       if date_node
         date_str = date_node.value
-        Date.strptime(date_str,"%Y-%m-%d")
+        Date.strptime(date_str, date_str.size == 4 ? '%Y' : "%Y-%m-%d")
       end
     end
 
