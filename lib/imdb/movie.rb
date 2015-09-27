@@ -23,6 +23,9 @@ module Imdb
     # @return [Array<Symbol>] a list of genres associated with this movie
     attr_reader :genres
 
+    # @return [String] plot summary
+    attr_reader :plot
+
     # @param [String] id unique imdb ttid
     # @param [String] name movie name
     # @param [Fixnum] votes number of votes
@@ -30,7 +33,7 @@ module Imdb
     # @param [Fixnum] rating user rating * 10
     # @param [Date] release_date release date
     # @param [Array<Symbol>] genres a list of genres associated with this movie
-    def initialize(id: id, name: name, votes: votes, duration: duration, rating: rating, release_date: release_date,genres: genres)
+    def initialize(id: id, name: name, votes: votes, duration: duration, rating: rating, release_date: release_date,genres: genres, plot:)
       @id = id
       @name = name
       @votes = votes
@@ -38,6 +41,7 @@ module Imdb
       @rating = rating
       @release_date = release_date
       @genres = genres
+      @plot = plot
     end
   end
 end

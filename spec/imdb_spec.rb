@@ -47,6 +47,10 @@ module Imdb
         it 'has the correct genres' do
           expect(movie.genres).to eq [:documentary, :biography]
         end
+
+        it 'has the correct plot' do
+          expect(movie.plot).to eq 'Locked away from society in an apartment on the Lower East Side of Manhattan, the Angulo brothers learn about the outside world through the films that they watch. Nicknamed, \'The Wolfpack,\'...'
+        end
       end
 
       context 'tt2236358' do

@@ -72,11 +72,18 @@ module Imdb
       doc.xpath('//span[@itemprop="genre"]/text()').map(&:text).map(&:downcase).map(&:to_sym)
     end
 
+    # Parse plot of movie from doc
+    #
+    # @return [String] A summary of the plot
+    def plot
+      doc.xpath('//p[@itemprop="description"]/text()').first.text.strip
+    end
+
     # Create a Movie object for this movie
     #
     # @return [Movie] Movie object representing this movie
     def movie
-      Movie.new(id: id, name: name, votes: votes, duration: duration, rating: rating, release_date: release_date, genres: genres)
+      Movie.new(id: id, name: name, votes: votes, duration: duration, rating: rating, release_date: release_date, genres: genres, plot: plot)
     end
   end
 end
