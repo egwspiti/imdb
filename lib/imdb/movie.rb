@@ -43,5 +43,9 @@ module Imdb
       @genres = genres
       @plot = plot
     end
+
+    def to_s
+      "<#{id}> #{release_date.year}, #{rating}/100 (#{votes}), #{duration}min, #{name}, #{genres}, #{plot}"
+    end
   end
 end

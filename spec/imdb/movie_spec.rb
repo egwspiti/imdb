@@ -43,5 +43,12 @@ module Imdb
     it 'has a plot' do
       expect(subject.plot).to eq 'Locked away from society in an apartment on the Lower East Side of Manhattan, the Angulo brothers learn about the outside world through the films that they watch. Nicknamed, \'The Wolfpack,\'...'
     end
+
+    context '#to_s' do
+      it 'provides a nice summary' do
+        expect(subject.to_s).to eq "<tt2415458> 2015, 71/100 (2028), 90min, The Wolfpack, [:documentary, :biography], Locked away from society in an apartment on the Lower East Side of Manhattan, the Angulo brothers learn about the outside world through the films that they watch. Nicknamed, 'The Wolfpack,'..."
+      end
+    end
+
   end
 end
