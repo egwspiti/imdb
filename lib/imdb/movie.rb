@@ -33,7 +33,7 @@ module Imdb
     # @param [Fixnum] rating user rating * 10
     # @param [Date] release_date release date
     # @param [Array<Symbol>] genres a list of genres associated with this movie
-    def initialize(id: id, name: name, votes: votes, duration: duration, rating: rating, release_date: release_date,genres: genres, plot:)
+    def initialize(id:, name:, votes:, duration:, rating:, release_date:, genres:, plot:)
       @id = id
       @name = name
       @votes = votes
