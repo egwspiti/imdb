@@ -30,7 +30,7 @@ module Imdb
     # @return [String] movie name
     def name
       name = doc.xpath('//td[@id="overview-top"]/h1[@class="header"]/span[@itemprop="name"][@class="title-extra"]').text
-      name[/"([^"]*)"/, 1]
+      name.empty? ? doc.xpath('//h1[@class="header"]/span[@itemprop="name"][@class="itemprop"]').text : name[/"([^"]*)"/, 1]
     end
 
     # Parse number of votes from doc

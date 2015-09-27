@@ -68,6 +68,16 @@ module Imdb
           expect(movie.release_date).to eq Date.parse('1 Jan 2014')
         end
       end
+
+      context 'tt2268016' do
+        before(:each) { expect(MovieEndpoint).to receive(:new).and_return(endpoint) }
+        let(:id) { 'tt2268016' }
+        let(:movie) { subject.get(id: id) }
+
+        it 'parses the original name' do
+          expect(movie.name).to eq 'Magic Mike XXL'
+        end
+      end
     end
   end
 end
