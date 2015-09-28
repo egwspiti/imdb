@@ -12,8 +12,8 @@ module Imdb
       end
 
       it 'prepends \'tt\' to id if needed' do
-        expect(MovieEndpoint).to receive(:new).with(id).and_call_original
-        subject.get(id: 2415458)
+        expect(MovieEndpoint).to receive(:new).at_least(:once).with(id).and_call_original
+        expect(subject.get(id: 2415458)).to eq subject.get(id: 'tt2415458')
       end
     end
   end

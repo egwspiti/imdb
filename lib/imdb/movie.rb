@@ -47,5 +47,14 @@ module Imdb
     def to_s
       "<#{id}> #{release_date.year}, #{rating}/100 (#{votes}), #{duration}min, #{name}, #{genres}, #{plot}"
     end
+
+    def ==(other)
+      return false unless [:id, :name, :votes, :duration, :rating, :release_date, :genres, :plot].all? do |m|
+        other.respond_to? m
+      end
+      id == other.id && name == other.name && votes == other.votes && duration == other.duration &&
+        rating == other.rating && release_date == other.release_date && genres == other.genres &&
+        plot == other.plot
+    end
   end
 end
