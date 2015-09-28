@@ -1,6 +1,5 @@
 require 'nokogiri'
 require 'open-uri'
-require 'imdb/movie'
 
 module Imdb
   # MovieEndpoint class fetches and parses data from imdb.com
@@ -79,11 +78,10 @@ module Imdb
       doc.xpath('//p[@itemprop="description"]/text()').first.text.strip
     end
 
-    # Create a Movie object for this movie
-    #
-    # @return [Movie] Movie object representing this movie
-    def movie
-      Movie.new(id: id, name: name, votes: votes, duration: duration, rating: rating, release_date: release_date, genres: genres, plot: plot)
+    # @return [Hash] A hash representing the parsed properties
+    def to_h
+      { id: id, name: name, votes: votes, duration: duration, rating: rating,
+        release_date: release_date, genres: genres, plot: plot }
     end
   end
 end

@@ -1,5 +1,6 @@
 require "imdb/version"
 require 'imdb/movie_endpoint'
+require 'imdb/movie'
 
 # Imdb module handles interaction with imdb
 #
@@ -13,6 +14,6 @@ module Imdb
   def self.get(id: id)
     id = "tt#{id}" unless "#{id}".start_with? 'tt'
     endpoint = MovieEndpoint.new(id)
-    endpoint.movie
+    Movie.new(endpoint.to_h)
   end
 end
