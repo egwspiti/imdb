@@ -16,7 +16,7 @@ module Imdb
     end
     attr_writer :doc
 
-    # Set url for fetching data
+    # Set url from id for fetching data.
     #
     # @param [String] id unique imdb ttid
     def initialize(id)
@@ -24,7 +24,7 @@ module Imdb
       @url = "http://www.imdb.com/title/#{id}/"
     end
 
-    # Parse name from doc
+    # Parse name
     #
     # @return [String] movie name
     def name
@@ -32,28 +32,28 @@ module Imdb
       name.empty? ? doc.xpath('//h1[@class="header"]/span[@itemprop="name"][@class="itemprop"]').text : name[/"([^"]*)"/, 1]
     end
 
-    # Parse number of votes from doc
+    # Parse number of votes
     #
     # @return [Fixnum] number of votes
     def votes
       doc.xpath('//span[@itemprop="ratingCount"]').text.gsub(',', '').to_i
     end
 
-    # Parse duration of movie from doc
+    # Parse duration
     #
     # @return [Fixnum] movie duration in minutes
     def duration
       doc.xpath('//*[@itemprop="duration"]').text.to_i
     end
 
-    # Parse user rating of movie from doc
+    # Parse user rating
     #
     # @return [Fixnum] user rating * 10
     def rating
       doc.xpath('//span[@itemprop="ratingValue"]').text.gsub(/\./, '').to_i
     end
 
-    # Parse release date of movie from doc
+    # Parse release date
     #
     # @return [Date] release date
     def release_date
@@ -64,21 +64,21 @@ module Imdb
       end
     end
 
-    # Parse genres of movie from doc
+    # Parse genres
     #
     # @return [Array<Symbol>] list of genres associated with this movie
     def genres
       doc.xpath('//span[@itemprop="genre"]/text()').map(&:text).map(&:downcase).map(&:to_sym)
     end
 
-    # Parse plot of movie from doc
+    # Parse plot
     #
     # @return [String] A summary of the plot
     def plot
       doc.xpath('//p[@itemprop="description"]/text()').first.text.strip
     end
 
-    # @return [Hash] A hash representing the parsed properties
+    # @return [Hash] a hash representing the parsed properties
     def to_h
       { id: id, name: name, votes: votes, duration: duration, rating: rating,
         release_date: release_date, genres: genres, plot: plot }

@@ -2,7 +2,7 @@ require "imdb/version"
 require 'imdb/movie_endpoint'
 require 'imdb/movie'
 
-# Imdb module handles interaction with imdb
+# Imdb module handles interaction with imdb.
 #
 # Imdb movies are represented by instances of Imdb::Movie class.
 # Imdb web pages are parsed with the help of Imdb::MovieEndpoint class.

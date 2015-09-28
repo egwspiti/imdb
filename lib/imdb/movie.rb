@@ -1,5 +1,5 @@
 module Imdb
-  # Movie class encapsulates an imdb entry for a movie
+  # Movie class encapsulates an imdb entry for a movie.
   class Movie
 
     # @return [String] unique imdb ttid
@@ -44,6 +44,7 @@ module Imdb
       @plot = plot
     end
 
+    # @return [String] text representation of this movie
     def to_s
       "<#{id}> #{release_date.year}, #{rating}/100 (#{votes}), #{duration}min, #{name}, #{genres}, #{plot}"
     end
