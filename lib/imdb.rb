@@ -11,7 +11,7 @@ module Imdb
   #
   # @param [String] id unique imdb ttid
   # @return [Movie] Movie object representing the imdb movie for the given id
-  def self.get(id: id)
+  def self.get(id:)
     id = "tt#{id}" unless "#{id}".start_with? 'tt'
     endpoint = MovieEndpoint.new(id)
     Movie.new(endpoint.to_h)
