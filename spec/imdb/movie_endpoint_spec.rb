@@ -75,6 +75,14 @@ module Imdb
       end
     end
 
+    context 'tt5078450' do
+      let(:id) { 'tt5078450' }
+
+      it 'parses month-year only release dates as 1st of that month' do
+        expect(subject.release_date).to eq Date.parse('1 Sep 2015')
+      end
+    end
+
     context 'tt2268016' do
       let(:id) { 'tt2268016' }
 
