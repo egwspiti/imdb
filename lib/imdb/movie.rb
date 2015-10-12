@@ -59,5 +59,10 @@ module Imdb
         other.respond_to?(m) && self.public_send(m) == other.public_send(m)
       end
     end
+
+    # @return [Hash] hash representation of this movie
+    def to_h
+      { id: id, name: name, votes: votes, duration: duration, rating: rating, release_date: release_date, genres: genres, plot: plot }
+    end
   end
 end
