@@ -10,7 +10,7 @@ module Fixtures
   rescue Errno::ENOENT
     tries -= 1
     if !tries.zero?
-      self.save_url(url)
+      self.save_id(id)
       retry
     end
   end
