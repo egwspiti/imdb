@@ -1,6 +1,7 @@
 require "imdb/version"
 require 'imdb/movie_endpoint'
 require 'imdb/movie'
+require 'imdb/movie_not_found'
 
 # Imdb module handles interaction with imdb.
 #

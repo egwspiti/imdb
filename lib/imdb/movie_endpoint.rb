@@ -13,6 +13,11 @@ module Imdb
     # @return [Nokogiri::HTML::Document] nokogiri document for the movie
     def doc
       @doc ||= Nokogiri::HTML(open(@url))
+    rescue OpenURI::HTTPError => e
+      if e.io.status.first == '404'
+        raise MovieNotFound.new(@url)
+      end
+      raise
     end
     attr_writer :doc
 

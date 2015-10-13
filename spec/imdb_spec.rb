@@ -16,5 +16,11 @@ module Imdb
         expect(subject.get(id: 2415458)).to eq subject.get(id: 'tt2415458')
       end
     end
+
+    context 'movie not found' do
+      it 'MovieNotFound is raised' do
+        expect { subject.get(id: 'a') }.to raise_error(MovieNotFound)
+      end
+    end
   end
 end
