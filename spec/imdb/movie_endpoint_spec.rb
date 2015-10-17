@@ -59,11 +59,11 @@ module Imdb
       end
     end
 
-    context 'tt2236358' do
+    context 'tt2236358 :not released yet' do
       let(:id) { 'tt2236358' }
 
-      it 'parses not released yet date as nil' do
-        expect(subject.release_date).to be_nil
+      it 'parses release date from year link' do
+        expect(subject.release_date).to eq Date.parse('1 Jan 2015')
       end
     end
 
@@ -72,6 +72,14 @@ module Imdb
 
       it 'parses year only release dates as Jan 1 of that year' do
         expect(subject.release_date).to eq Date.parse('1 Jan 2014')
+      end
+    end
+
+    context 'tt0000538 :no release_date info' do
+      let(:id) { 'tt0000538' }
+
+      it 'parses release dates from year link' do
+        expect(subject.release_date).to eq Date.parse('1 Jan 1906')
       end
     end
 

@@ -73,7 +73,14 @@ module Imdb
         else
           Date.strptime(date_str, '%Y-%m-%d')
         end
+      else
+        year = yearlink.text.gsub(/\(|\)/, '')
+        Date.strptime(year, '%Y')
       end
+    end
+
+    def yearlink
+      doc.xpath('//h1[@class="header"]/span[@class="nobr"]').first
     end
 
     # Parse genres
