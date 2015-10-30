@@ -5,6 +5,9 @@ module Imdb
     # @return [String] unique imdb ttid
     attr_reader :id
 
+    # @return [Symbol] type
+    attr_reader :type
+
     # @return [String] movie name
     attr_reader :name
 
@@ -33,8 +36,9 @@ module Imdb
     # @param [Fixnum] rating user rating * 10
     # @param [Date] release_date release date
     # @param [Array<Symbol>] genres a list of genres associated with this movie
-    def initialize(id:, name:, votes:, duration:, rating:, release_date:, genres:, plot:)
+    def initialize(id:, name:, votes:, duration:, rating:, release_date:, genres:, plot:, type:)
       @id = id
+      @type = type
       @name = name
       @votes = votes
       @duration = duration
@@ -46,7 +50,7 @@ module Imdb
 
     # @return [String] text representation of this movie
     def to_s
-      "<#{id}> #{release_date.year}, #{rating}/100 (#{votes}), #{duration}min, #{name}, #{genres}, #{plot}"
+      "<#{id}> #{type}, #{release_date.year}, #{rating}/100 (#{votes}), #{duration}min, #{name}, #{genres}, #{plot}"
     end
 
     # Movie objects are equal if and only if their id, name, votes, duration,
@@ -62,7 +66,7 @@ module Imdb
 
     # @return [Hash] hash representation of this movie
     def to_h
-      { id: id, name: name, votes: votes, duration: duration, rating: rating, release_date: release_date, genres: genres, plot: plot }
+      { id: id, type: type, name: name, votes: votes, duration: duration, rating: rating, release_date: release_date, genres: genres, plot: plot }
     end
   end
 end

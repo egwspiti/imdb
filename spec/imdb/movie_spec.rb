@@ -4,6 +4,7 @@ require 'imdb/movie'
 module Imdb
   describe Movie do
     subject { Movie.new(id: 'tt2415458',
+                        type: :feature_film,
                         name: 'The Wolfpack',
                         votes: 2028,
                         duration: 90,
@@ -14,6 +15,10 @@ module Imdb
 
     it 'has an id' do
       expect(subject.id).to eq 'tt2415458'
+    end
+
+    it 'has a type' do
+      expect(subject.type).to eq :feature_film
     end
 
     it 'has a name' do
@@ -46,7 +51,7 @@ module Imdb
 
     context '#to_s' do
       it 'provides a nice summary' do
-        expect(subject.to_s).to eq "<tt2415458> 2015, 71/100 (2028), 90min, The Wolfpack, [:documentary, :biography], Locked away from society in an apartment on the Lower East Side of Manhattan, the Angulo brothers learn about the outside world through the films that they watch. Nicknamed, 'The Wolfpack,'..."
+        expect(subject.to_s).to eq "<tt2415458> feature_film, 2015, 71/100 (2028), 90min, The Wolfpack, [:documentary, :biography], Locked away from society in an apartment on the Lower East Side of Manhattan, the Angulo brothers learn about the outside world through the films that they watch. Nicknamed, 'The Wolfpack,'..."
       end
     end
 
@@ -54,6 +59,7 @@ module Imdb
       it 'returns a hash represantation of this movie' do
         expect(subject.to_h).to eq ({ id: 'tt2415458',
                         name: 'The Wolfpack',
+                        type: :feature_film,
                         votes: 2028,
                         duration: 90,
                         rating: 71,
