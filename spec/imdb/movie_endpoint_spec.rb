@@ -17,6 +17,36 @@ module Imdb
       end
     end
 
+    context '#type' do
+      it 'parses the correct type' do
+        expect(subject.type).to eq :feature_film
+      end
+
+      context 'tt1334456' do
+        let(:id) { 'tt1334456' }
+
+        it 'is a tv movie' do
+          expect(subject.type).to eq :tv_movie
+        end
+      end
+
+      context 'tt4416858' do
+        let(:id) { 'tt4416858' }
+
+        it 'is a tv episode' do
+          expect(subject.type).to eq :tv_episode
+        end
+      end
+
+      context 'tt1813862' do
+        let(:id) { 'tt1813862' }
+
+        it 'is a tv series' do
+          expect(subject.type).to eq :tv_series
+        end
+      end
+    end
+
     context '#name' do
       it 'parses the correct name' do
         expect(subject.name).to eq 'The Wolfpack'

@@ -29,6 +29,26 @@ module Imdb
       @url = "http://www.imdb.com/title/#{id}/"
     end
 
+    # Parse type
+    #
+    # @return [Symbol] movie type
+    def type
+      infobar_node = doc.xpath('//div[@class="infobar"]')
+      type_text = infobar_node.xpath('./text()[1]').text
+      t = type_text.gsub(/[[:space:]]+/,' ').strip
+      return :feature_film if t.empty?
+      case t
+      when 'TV Movie'
+        :tv_movie
+      when 'TV Episode'
+        :tv_episode
+      when 'TV Series'
+        :tv_series
+      else
+        require 'pry'; binding.pry
+      end
+    end
+
     # Parse name
     #
     # @return [String] movie name
@@ -99,7 +119,7 @@ module Imdb
 
     # @return [Hash] a hash representing the parsed properties
     def to_h
-      { id: id, name: name, votes: votes, duration: duration, rating: rating,
+      { id: id, type: type, name: name, votes: votes, duration: duration, rating: rating,
         release_date: release_date, genres: genres, plot: plot }
     end
   end
