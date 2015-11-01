@@ -53,13 +53,13 @@ module Imdb
       "<#{id}> #{type}, #{release_date.year}, #{rating}/100 (#{votes}), #{duration}min, #{name}, #{genres}, #{plot}"
     end
 
-    # Movie objects are equal if and only if their id, name, votes, duration,
+    # Movie objects are equal if and only if their id, type, name, votes, duration,
     # rating, release_date, genres and plot attributes are the same.
     #
     # @param [Object] other object to compare with.
     # @return [Boolean]
     def ==(other)
-      [:id, :name, :votes, :duration, :rating, :release_date, :genres, :plot].all? do |m|
+      [:id, :type, :name, :votes, :duration, :rating, :release_date, :genres, :plot].all? do |m|
         other.respond_to?(m) && self.public_send(m) == other.public_send(m)
       end
     end
