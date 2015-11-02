@@ -120,7 +120,7 @@ module Imdb
     end
 
     def under_development
-      doc.xpath('//span[@class="pro-link"]').first
+      !!doc.xpath('//span[@class="pro-link"]').first
     end
 
     # @return [Hash] a hash representing the parsed properties
