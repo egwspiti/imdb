@@ -157,6 +157,10 @@ module Imdb
       it 'has a nil duration' do
         expect(subject.duration).to be_nil
       end
+
+      it 'has nil votes' do
+        expect(subject.votes).to be_nil
+      end
     end
   end
 end

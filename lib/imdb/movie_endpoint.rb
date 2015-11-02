@@ -61,6 +61,7 @@ module Imdb
     #
     # @return [Fixnum] number of votes
     def votes
+      return nil if under_development
       doc.xpath('//span[@itemprop="ratingCount"]').text.gsub(',', '').to_i
     end
 
