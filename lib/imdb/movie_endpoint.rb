@@ -68,6 +68,7 @@ module Imdb
     #
     # @return [Fixnum] movie duration in minutes
     def duration
+      return nil if under_development
       doc.xpath('//*[@itemprop="duration"]').text.to_i
     end
 

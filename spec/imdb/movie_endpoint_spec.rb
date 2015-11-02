@@ -153,6 +153,10 @@ module Imdb
       it 'has a nil plot' do
         expect(subject.plot).to be_nil
       end
+
+      it 'has a nil duration' do
+        expect(subject.duration).to be_nil
+      end
     end
   end
 end
