@@ -77,6 +77,7 @@ module Imdb
     #
     # @return [Fixnum] user rating * 10
     def rating
+      return nil if under_development
       doc.xpath('//span[@itemprop="ratingValue"]').text.gsub(/\./, '').to_i
     end
 

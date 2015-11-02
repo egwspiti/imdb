@@ -161,6 +161,10 @@ module Imdb
       it 'has nil votes' do
         expect(subject.votes).to be_nil
       end
+
+      it 'has nil rating' do
+        expect(subject.rating).to be_nil
+      end
     end
   end
 end
