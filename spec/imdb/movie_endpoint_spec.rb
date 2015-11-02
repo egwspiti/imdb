@@ -142,5 +142,13 @@ module Imdb
         expect(subject.name).to eq 'Magic Mike XXL'
       end
     end
+
+    context 'tt1072757 :under_development title' do
+      let(:id) { 'tt1072757' }
+
+      it 'has a nil release date' do
+        expect(subject.release_date).to be_nil
+      end
+    end
   end
 end

@@ -82,6 +82,7 @@ module Imdb
     #
     # @return [Date] release date
     def release_date
+      return nil if under_development
       date_node = doc.xpath('//meta[@itemprop="datePublished"]/@content[1]').first
       if date_node
         date_str = date_node.value
