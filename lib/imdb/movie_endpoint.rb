@@ -115,6 +115,7 @@ module Imdb
     #
     # @return [String] A summary of the plot
     def plot
+      return nil if under_development
       doc.xpath('//p[@itemprop="description"]/text()').first.text.strip
     end
 

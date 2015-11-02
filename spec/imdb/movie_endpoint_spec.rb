@@ -149,6 +149,10 @@ module Imdb
       it 'has a nil release date' do
         expect(subject.release_date).to be_nil
       end
+
+      it 'has a nil plot' do
+        expect(subject.plot).to be_nil
+      end
     end
   end
 end
