@@ -117,10 +117,14 @@ module Imdb
       doc.xpath('//p[@itemprop="description"]/text()').first.text.strip
     end
 
+    def under_development
+      doc.xpath('//span[@class="pro-link"]').first
+    end
+
     # @return [Hash] a hash representing the parsed properties
     def to_h
       { id: id, type: type, name: name, votes: votes, duration: duration, rating: rating,
-        release_date: release_date, genres: genres, plot: plot }
+        release_date: release_date, genres: genres, plot: plot, under_development: under_development }
     end
   end
 end

@@ -3,15 +3,18 @@ require 'imdb/movie'
 
 module Imdb
   describe Movie do
-    subject { Movie.new(id: 'tt2415458',
-                        type: :feature_film,
-                        name: 'The Wolfpack',
-                        votes: 2028,
-                        duration: 90,
-                        rating: 71,
-                        release_date: Date.parse('10 July 2015'),
-                        genres: [:documentary, :biography],
-                        plot: 'Locked away from society in an apartment on the Lower East Side of Manhattan, the Angulo brothers learn about the outside world through the films that they watch. Nicknamed, \'The Wolfpack,\'...') }
+    let(:movie) { { id: 'tt2415458',
+                    type: :feature_film,
+                    name: 'The Wolfpack',
+                    votes: 2028,
+                    duration: 90,
+                    rating: 71,
+                    release_date: Date.parse('10 July 2015'),
+                    genres: [:documentary, :biography],
+                    plot: 'Locked away from society in an apartment on the Lower East Side of Manhattan, the Angulo brothers learn about the outside world through the films that they watch. Nicknamed, \'The Wolfpack,\'...',
+                    under_development: false } }
+
+    subject { Movie.new(movie) }
 
     it 'has an id' do
       expect(subject.id).to eq 'tt2415458'
@@ -49,6 +52,10 @@ module Imdb
       expect(subject.plot).to eq 'Locked away from society in an apartment on the Lower East Side of Manhattan, the Angulo brothers learn about the outside world through the films that they watch. Nicknamed, \'The Wolfpack,\'...'
     end
 
+    it 'has an under_development property that signifies whether the entry is still under development or not' do
+      expect(subject.under_development).to be_falsey
+    end
+
     context '#to_s' do
       it 'provides a nice summary' do
         expect(subject.to_s).to eq "<tt2415458> feature_film, 2015, 71/100 (2028), 90min, The Wolfpack, [:documentary, :biography], Locked away from society in an apartment on the Lower East Side of Manhattan, the Angulo brothers learn about the outside world through the films that they watch. Nicknamed, 'The Wolfpack,'..."
@@ -58,14 +65,15 @@ module Imdb
     context '#to_h' do
       it 'returns a hash represantation of this movie' do
         expect(subject.to_h).to eq ({ id: 'tt2415458',
-                        name: 'The Wolfpack',
-                        type: :feature_film,
-                        votes: 2028,
-                        duration: 90,
-                        rating: 71,
-                        release_date: Date.parse('10 July 2015'),
-                        genres: [:documentary, :biography],
-                        plot: 'Locked away from society in an apartment on the Lower East Side of Manhattan, the Angulo brothers learn about the outside world through the films that they watch. Nicknamed, \'The Wolfpack,\'...' })
+                                      name: 'The Wolfpack',
+                                      type: :feature_film,
+                                      votes: 2028,
+                                      duration: 90,
+                                      rating: 71,
+                                      release_date: Date.parse('10 July 2015'),
+                                      genres: [:documentary, :biography],
+                                      plot: 'Locked away from society in an apartment on the Lower East Side of Manhattan, the Angulo brothers learn about the outside world through the films that they watch. Nicknamed, \'The Wolfpack,\'...' ,
+                                      under_development: false })
       end
     end
 
