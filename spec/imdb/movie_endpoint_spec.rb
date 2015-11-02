@@ -89,6 +89,20 @@ module Imdb
       end
     end
 
+    context '#under_development' do
+      it 'is false for finished movies, series, etc' do
+        expect(subject.under_development).to be_falsey
+      end
+
+      context 'tt1072757' do
+        let(:id) { 'tt1072757' }
+
+        it 'is true since this entry is under development and more info are only available through imdb pro' do
+          expect(subject.under_development).to be_truthy
+        end
+      end
+    end
+
     context 'tt2236358 :not released yet' do
       let(:id) { 'tt2236358' }
 
