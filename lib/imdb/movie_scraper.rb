@@ -60,7 +60,7 @@ module Imdb
     # @return [Date] release date
     def release_date
       return nil if under_development
-      date_node = xpath('//meta[@itemprop="datePublished"]/@content[1]').first
+      date_node = at('//meta[@itemprop="datePublished"]/@content[1]')
       if date_node
         date_str = date_node.value
         case date_str.size
@@ -78,7 +78,7 @@ module Imdb
     end
 
     def yearlink
-      xpath('//h1[@class="header"]/span[@class="nobr"]').first
+      at('//h1[@class="header"]/span[@class="nobr"]')
     end
 
     # Parse genres
@@ -93,11 +93,11 @@ module Imdb
     # @return [String] A summary of the plot
     def plot
       return nil if under_development
-      xpath('//p[@itemprop="description"]/text()').first.text.strip
+      at('//p[@itemprop="description"]/text()').text.strip
     end
 
     def under_development
-      !!xpath('//span[@class="pro-link"]').first
+      !!at('//span[@class="pro-link"]')
     end
 
     # @return [Hash] a hash representing the parsed properties
