@@ -1,5 +1,6 @@
 require "imdb/version"
 require 'imdb/movie_endpoint'
+require 'imdb/movie_scraper'
 require 'imdb/movie'
 require 'imdb/movie_not_found'
 
@@ -15,6 +16,7 @@ module Imdb
   def self.get(id:)
     id = "tt#{id}" unless "#{id}".start_with? 'tt'
     endpoint = MovieEndpoint.new(id)
-    Movie.new(endpoint.to_h)
+    scraper = MovieScraper.new(endpoint.doc)
+    Movie.new(scraper.to_h.merge(id: id))
   end
 end

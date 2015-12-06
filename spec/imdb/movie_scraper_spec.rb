@@ -1,19 +1,23 @@
 require 'spec_helper'
 require 'imdb/movie_endpoint'
+require 'imdb/movie_scraper'
 
 module Imdb
-  describe MovieEndpoint do
+  describe MovieScraper do
 
     let(:endpoint) { MovieEndpoint.new(id).tap { |e| e.doc = Fixtures::doc_for_id(id) } }
     before(:each) { expect(MovieEndpoint).to receive(:new).and_return(endpoint) }
 
-    subject { MovieEndpoint.new(id) }
+    let(:doc) { MovieEndpoint.new(id).doc }
+
+    subject { MovieScraper.new(doc) }
 
     let(:id) { 'tt2415458' }
 
     context '.new' do
-      it 'accepts an id' do
-        expect { MovieEndpoint.new(id) }.not_to raise_error
+
+      it 'accepts a doc' do
+        expect { MovieScraper.new(doc) }.not_to raise_error
       end
     end
 

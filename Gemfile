@@ -8,3 +8,5 @@ gem 'yard'
 gem 'pry'
 gem 'pry-doc'
 gem 'nokogiri'
+
+gem 'scrapr', path: '../scrapr'
