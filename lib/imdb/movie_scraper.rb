@@ -1,7 +1,9 @@
 require 'scrapr/scraper'
+require 'scrapr/helpers/xpath'
 
 module Imdb
   class MovieScraper < Scrapr::Scraper
+    include Scrapr::Helpers::Xpath
 
     # Parse type
     #
@@ -27,8 +29,8 @@ module Imdb
     #
     # @return [String] movie name
     def name
-      name = xpath('//td[@id="overview-top"]/h1[@class="header"]/span[@itemprop="name"][@class="title-extra"]').text
-      name.empty? ? xpath('//h1[@class="header"]/span[@itemprop="name"][@class="itemprop"]').text : name[/"([^"]*)"/, 1]
+      name = xpath_text('//td[@id="overview-top"]/h1[@class="header"]/span[@itemprop="name"][@class="title-extra"]')
+      name.empty? ? xpath_text('//h1[@class="header"]/span[@itemprop="name"][@class="itemprop"]') : name[/"([^"]*)"/, 1]
     end
 
     # Parse number of votes
@@ -36,7 +38,7 @@ module Imdb
     # @return [Fixnum] number of votes
     def votes
       return nil if under_development
-      xpath('//span[@itemprop="ratingCount"]').text.gsub(',', '').to_i
+      xpath_text('//span[@itemprop="ratingCount"]').gsub(',', '').to_i
     end
 
     # Parse duration
@@ -44,7 +46,7 @@ module Imdb
     # @return [Fixnum] movie duration in minutes
     def duration
       return nil if under_development
-      xpath('//*[@itemprop="duration"]').text.to_i
+      xpath_text('//*[@itemprop="duration"]').to_i
     end
 
     # Parse user rating
@@ -52,7 +54,7 @@ module Imdb
     # @return [Fixnum] user rating * 10
     def rating
       return nil if under_development
-      xpath('//span[@itemprop="ratingValue"]').text.gsub(/\./, '').to_i
+      xpath_text('//span[@itemprop="ratingValue"]').gsub(/\./, '').to_i
     end
 
     # Parse release date
@@ -93,7 +95,7 @@ module Imdb
     # @return [String] A summary of the plot
     def plot
       return nil if under_development
-      at('//p[@itemprop="description"]/text()').text.strip
+      at_text('//p[@itemprop="description"]/text()').strip
     end
 
     def under_development
