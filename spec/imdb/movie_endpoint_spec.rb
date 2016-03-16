@@ -55,7 +55,7 @@ module Imdb
 
     context '#votes' do
       it 'parses the correct number of votes' do
-        expect(subject.votes).to eq 2242
+        expect(subject.votes).to eq 6077
       end
     end
 

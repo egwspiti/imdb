@@ -54,7 +54,12 @@ module Imdb
     # @return [String] movie name
     def name
       name = doc.xpath('//td[@id="overview-top"]/h1[@class="header"]/span[@itemprop="name"][@class="title-extra"]').text
-      name.empty? ? doc.xpath('//h1[@class="header"]/span[@itemprop="name"][@class="itemprop"]').text : name[/"([^"]*)"/, 1]
+      if name.empty?
+        name = doc.xpath('//h1[@class="header"]/span[@itemprop="name"][@class="itemprop"]').text
+        name.empty? ? doc.at('//div[@class="originalTitle"][1]/text()').text : name
+      else
+        name[/"([^"]*)"/, 1]
+      end
     end
 
     # Parse number of votes
@@ -70,7 +75,7 @@ module Imdb
     # @return [Fixnum] movie duration in minutes
     def duration
       return nil if under_development
-      doc.xpath('//*[@itemprop="duration"]').text.to_i
+      doc.xpath('//*[@itemprop="duration"][position()=3]').text.to_i
     end
 
     # Parse user rating
@@ -119,7 +124,7 @@ module Imdb
     # @return [String] A summary of the plot
     def plot
       return nil if under_development
-      doc.xpath('//p[@itemprop="description"]/text()').first.text.strip
+      (doc.at('//p[@itemprop="description"]/text()') || doc.at('//div[@itemprop="description"]/text()')).text.strip
     end
 
     def under_development
