@@ -33,19 +33,16 @@ module Imdb
     #
     # @return [Symbol] movie type
     def type
-      infobar_node = doc.xpath('//div[@class="infobar"]')
-      type_text = infobar_node.xpath('./text()[1]').text
-      t = type_text.gsub(/[[:space:]]+/,' ').strip
-      return :feature_film if t.empty?
-      case t
-      when 'TV Movie'
-        :tv_movie
-      when 'TV Episode'
-        :tv_episode
-      when 'TV Series'
-        :tv_series
+      title = doc.at('//title/text()').text
+      case title
+      when /TV Movie/
+        return :tv_movie
+      when /TV Episode/
+        return :tv_episode
+      when /TV Series/
+        return :tv_series
       else
-        require 'pry'; binding.pry
+        return :feature_film
       end
     end
 
