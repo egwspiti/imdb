@@ -125,7 +125,7 @@ module Imdb
     end
 
     def under_development
-      !!doc.xpath('//span[@class="pro-link"]').first
+      doc.xpath('//a[@class="quicklink"]/text()').text.include?('DEVELOPMENT')
     end
 
     # @return [Hash] a hash representing the parsed properties
