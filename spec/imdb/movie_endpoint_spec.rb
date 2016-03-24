@@ -103,11 +103,11 @@ module Imdb
       end
     end
 
-    context 'tt2236358 :not released yet' do
-      let(:id) { 'tt2236358' }
+    context 'tt3291150 :not released yet' do
+      let(:id) { 'tt3291150' }
 
       it 'parses release date from year link' do
-        expect(subject.release_date).to eq Date.parse('1 Jan 2015')
+        expect(subject.release_date).to eq Date.parse('1 Jan 2017')
       end
     end
 

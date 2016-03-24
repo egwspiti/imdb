@@ -106,7 +106,7 @@ module Imdb
     end
 
     def yearlink
-      doc.xpath('//h1[@class="header"]/span[@class="nobr"]').first
+      doc.at('//span[@id="titleYear"]')
     end
 
     # Parse genres
