@@ -143,6 +143,14 @@ module Imdb
       end
     end
 
+    context 'tt3825638' do
+      let(:id) { 'tt3825638' }
+
+      it 'parses the original name' do
+        expect(subject.name).to eq 'Im Labyrinth des Schweigens'
+      end
+    end
+
     context 'tt1072757 :under_development title' do
       let(:id) { 'tt1072757' }
 

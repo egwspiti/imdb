@@ -50,12 +50,13 @@ module Imdb
     #
     # @return [String] movie name
     def name
-      name = doc.xpath('//td[@id="overview-top"]/h1[@class="header"]/span[@itemprop="name"][@class="title-extra"]').text
-      if name.empty?
-        name = doc.xpath('//h1[@class="header"]/span[@itemprop="name"][@class="itemprop"]').text
-        name.empty? ? doc.at('//div[@class="originalTitle"][1]/text()').text : name
+      original_name = doc.at('//div[@class="originalTitle"][1]/text()')
+      if original_name
+        original_name.text
       else
-        name[/"([^"]*)"/, 1]
+        name = doc.at('//h1[@itemprop="name"]/text()').text
+        # remove weird unicode space from begin/end of name
+        name.gsub(/\A[[:space:]]+|[[:space:]]+\z/, '')
       end
     end
 
