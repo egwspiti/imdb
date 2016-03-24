@@ -122,7 +122,7 @@ module Imdb
     # @return [String] A summary of the plot
     def plot
       return nil if under_development
-      (doc.at('//p[@itemprop="description"]/text()') || doc.at('//div[@itemprop="description"]/text()')).text.strip
+      doc.at('//div[@itemprop="description"]/text()').text.strip
     end
 
     def under_development
