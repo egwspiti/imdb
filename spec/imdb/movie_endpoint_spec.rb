@@ -157,8 +157,23 @@ module Imdb
       it 'parses the correct release date' do
         expect(subject.release_date).to eq Date.parse('1 Jan 1896')
       end
+
+      it 'parses the correct duration' do
+        expect(subject.duration).to eq 1
+      end
     end
 
+    context 'tt385586' do
+      let(:id) { 'tt385586' }
+
+      it 'parses the correct release date' do
+        expect(subject.release_date).to eq Date.parse('1 Jan 2001')
+      end
+
+      it 'parses the correct duration' do
+        expect(subject.duration).to eq 34
+      end
+    end
     context 'tt1072757 :under_development title' do
       let(:id) { 'tt1072757' }
 
