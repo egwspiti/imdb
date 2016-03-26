@@ -127,6 +127,16 @@ module Imdb
       end
     end
 
+    # Usually a tv_episode where there is some kind of release date info for the series
+    # but not for the specific episode.
+    context 'tt1264528 :no release_date info, no yearlink' do
+      let(:id) { 'tt1264528' }
+
+      it 'parses nil release date' do
+        expect(subject.release_date).to be_nil
+      end
+    end
+
     context 'tt5078450' do
       let(:id) { 'tt5078450' }
 

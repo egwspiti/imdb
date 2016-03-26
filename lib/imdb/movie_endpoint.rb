@@ -102,8 +102,8 @@ module Imdb
           Date.strptime(date_str, '%Y-%m-%d')
         end
       else
-        year = yearlink.text.gsub(/\(|\)/, '')
-        Date.strptime(year, '%Y')
+        year = yearlink && yearlink.text.gsub(/\(|\)/, '')
+        year && Date.strptime(year, '%Y')
       end
     end
 
