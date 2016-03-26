@@ -73,7 +73,8 @@ module Imdb
     # @return [Fixnum] movie duration in minutes
     def duration
       return nil if under_development
-      doc.at('//*[@itemprop="duration"]/@datetime').value[/\d+/].to_i
+      duration = doc.at('//*[@itemprop="duration"]/@datetime')
+      duration && duration.value[/\d+/].to_i
     end
 
     # Parse user rating
