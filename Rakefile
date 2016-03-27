@@ -3,13 +3,17 @@ require 'rspec/core/rake_task'
 require 'yard'
 require_relative 'spec/fixtures'
 
+def at_ci?
+  ENV['AT_CI']
+end
+
 YARD::Rake::YardocTask.new do |t|
 
 end
 
 task :default => :spec
 RSpec::Core::RakeTask.new('spec') do |t|
-
+  t.rspec_opts = at_ci? && "-t ~skip_ci"
 end
 
 desc "Start pry console with imdb required."
