@@ -1,4 +1,4 @@
-# Imdb
+# Imdb [![Build Status](https://travis-ci.org/egwspiti/imdb.svg?branch=master)](https://travis-ci.org/egwspiti/imdb)
 
 Imdb is a gem that fetches and parses data from imdb.
 
