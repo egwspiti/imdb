@@ -2,6 +2,5 @@ language: ruby
 rvm:
   - 2.1
   - 2.2
-  - ruby-head
 env:
   - AT_CI=true
