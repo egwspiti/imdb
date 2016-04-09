@@ -6,4 +6,4 @@ rvm:
 env:
   - AT_CI=true
 before_install:
-  - gem install nokogiri -- -with-cflags='--std=gnu99'
+  - gem install --verbose nokogiri -- -with-cflags='--std=gnu99'
