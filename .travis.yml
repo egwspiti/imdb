@@ -5,3 +5,5 @@ rvm:
   - ruby-head
 env:
   - AT_CI=true
+before_install:
+  - gem install nokogiri -- -with-cflags='--std=gnu99'
